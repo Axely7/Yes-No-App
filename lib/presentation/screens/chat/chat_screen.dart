@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:yes_no_app/presentation/widgets/chat/my_message_bubble.dart';
+import 'package:yes_no_app/presentation/widgets/chat/other_messages_bubble.dart';
+import 'package:yes_no_app/presentation/widgets/shared/message_field_box.dart';
 
 class ChatScreen extends StatelessWidget {
   const ChatScreen({super.key});
@@ -13,7 +16,7 @@ class ChatScreen extends StatelessWidget {
               backgroundImage: NetworkImage(
                   'https://styles.redditmedia.com/t5_2rk1k/styles/communityIcon_cyedm7r4hk1a1.png')),
         ),
-        title: const Text('Time Machine Chat'),
+        title: const Text('Nikola Tesla'),
         centerTitle: false,
       ),
       body: _ChatView(),
@@ -33,11 +36,13 @@ class _ChatView extends StatelessWidget {
               child: ListView.builder(
                 itemCount: 100,
                 itemBuilder: (context, index) {
-                  return Text('Indice: $index');
+                  return (index % 2 == 0)
+                      ? const OtherMessageBubble()
+                      : const MyMessageBubble();
                 },
               ),
             ),
-            Text('Mundo')
+            const MessageFieldBox(),
           ],
         ),
       ),
